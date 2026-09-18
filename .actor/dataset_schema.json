@@ -1,64 +1,576 @@
 {
     "actorSpecification": 1,
-    "fields": {},
+    "fields": {
+        "type": "object",
+        "description": "One record per audited URL and device strategy from the Google PageSpeed Insights API. Records with success: true carry Lighthouse scores, lab metrics and Core Web Vitals field data; records with success: false carry errorType and error instead.",
+        "properties": {
+            "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "The page URL you supplied, normalised to include the scheme."
+            },
+            "finalUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "The URL Lighthouse ended on after following redirects."
+            },
+            "strategy": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "enum": [
+                    "mobile",
+                    "desktop",
+                    null
+                ],
+                "description": "Device emulation used for the audit: \"mobile\" or \"desktop\" (null on failures that happened before any audit ran)."
+            },
+            "success": {
+                "type": "boolean",
+                "description": "True when Google returned a usable Lighthouse report; only these records are billed."
+            },
+            "scores": {
+                "type": "object",
+                "description": "Lighthouse category scores as integers from 0 to 100; null for categories that were not requested.",
+                "properties": {
+                    "performance": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Lighthouse Performance score (0 to 100)."
+                    },
+                    "accessibility": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Lighthouse Accessibility score (0 to 100)."
+                    },
+                    "bestPractices": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Lighthouse Best Practices score (0 to 100)."
+                    },
+                    "seo": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Lighthouse SEO score (0 to 100)."
+                    }
+                },
+                "required": [
+                    "performance",
+                    "accessibility",
+                    "bestPractices",
+                    "seo"
+                ]
+            },
+            "labMetrics": {
+                "type": "object",
+                "description": "Lab measurements from Google's test device; times in milliseconds, CLS unitless.",
+                "properties": {
+                    "fcpMs": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "First Contentful Paint in milliseconds."
+                    },
+                    "lcpMs": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Largest Contentful Paint in milliseconds."
+                    },
+                    "cls": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "Cumulative Layout Shift score (lower is better, under 0.1 is good)."
+                    },
+                    "tbtMs": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Total Blocking Time in milliseconds."
+                    },
+                    "speedIndexMs": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Speed Index in milliseconds."
+                    },
+                    "ttiMs": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Time to Interactive in milliseconds."
+                    }
+                },
+                "required": [
+                    "fcpMs",
+                    "lcpMs",
+                    "cls",
+                    "tbtMs",
+                    "speedIndexMs",
+                    "ttiMs"
+                ]
+            },
+            "fieldData": {
+                "type": [
+                    "object",
+                    "null"
+                ],
+                "description": "Real-user Core Web Vitals from the Chrome UX Report (28-day 75th percentile); null when the page has too little traffic.",
+                "properties": {
+                    "lcpMs": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "percentile": {
+                                "type": "number",
+                                "description": "75th-percentile value experienced by real users."
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Google's rating of this metric: \"FAST\", \"AVERAGE\", \"SLOW\" or \"NONE\"."
+                            }
+                        },
+                        "required": [
+                            "percentile",
+                            "category"
+                        ],
+                        "description": "Real-user Largest Contentful Paint in milliseconds. Null when Google has no data for this metric."
+                    },
+                    "inpMs": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "percentile": {
+                                "type": "number",
+                                "description": "75th-percentile value experienced by real users."
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Google's rating of this metric: \"FAST\", \"AVERAGE\", \"SLOW\" or \"NONE\"."
+                            }
+                        },
+                        "required": [
+                            "percentile",
+                            "category"
+                        ],
+                        "description": "Real-user Interaction to Next Paint in milliseconds. Null when Google has no data for this metric."
+                    },
+                    "cls": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "percentile": {
+                                "type": "number",
+                                "description": "75th-percentile value experienced by real users."
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Google's rating of this metric: \"FAST\", \"AVERAGE\", \"SLOW\" or \"NONE\"."
+                            }
+                        },
+                        "required": [
+                            "percentile",
+                            "category"
+                        ],
+                        "description": "Real-user Cumulative Layout Shift score. Null when Google has no data for this metric."
+                    },
+                    "fcpMs": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "percentile": {
+                                "type": "number",
+                                "description": "75th-percentile value experienced by real users."
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Google's rating of this metric: \"FAST\", \"AVERAGE\", \"SLOW\" or \"NONE\"."
+                            }
+                        },
+                        "required": [
+                            "percentile",
+                            "category"
+                        ],
+                        "description": "Real-user First Contentful Paint in milliseconds. Null when Google has no data for this metric."
+                    },
+                    "ttfbMs": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "percentile": {
+                                "type": "number",
+                                "description": "75th-percentile value experienced by real users."
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Google's rating of this metric: \"FAST\", \"AVERAGE\", \"SLOW\" or \"NONE\"."
+                            }
+                        },
+                        "required": [
+                            "percentile",
+                            "category"
+                        ],
+                        "description": "Real-user Time to First Byte in milliseconds. Null when Google has no data for this metric."
+                    },
+                    "overallCategory": {
+                        "type": "string",
+                        "description": "Google's overall Core Web Vitals verdict for the page: \"FAST\", \"AVERAGE\", \"SLOW\" or \"NONE\"."
+                    },
+                    "originFallback": {
+                        "type": "boolean",
+                        "description": "True when Google had no page-level data and the numbers describe the whole origin instead."
+                    }
+                },
+                "required": [
+                    "lcpMs",
+                    "inpMs",
+                    "cls",
+                    "fcpMs",
+                    "ttfbMs",
+                    "overallCategory",
+                    "originFallback"
+                ]
+            },
+            "opportunities": {
+                "type": "array",
+                "description": "With \"Include audit details\": failing performance audits with estimated savings, largest saving first, up to 15.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Lighthouse audit id, e.g. \"render-blocking-resources\"."
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "Human-readable audit title."
+                        },
+                        "savingsMs": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "description": "Estimated load-time saving in milliseconds."
+                        },
+                        "savingsBytes": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "description": "Estimated transfer-size saving in bytes."
+                        },
+                        "displayValue": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "Short summary as shown in the Lighthouse report."
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "title",
+                        "savingsMs",
+                        "savingsBytes",
+                        "displayValue"
+                    ]
+                }
+            },
+            "failedAudits": {
+                "type": "array",
+                "description": "With \"Include audit details\": failing accessibility, best-practices and SEO audits, most heavily weighted first, up to 15.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Lighthouse audit id, e.g. \"color-contrast\"."
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "Human-readable audit title."
+                        },
+                        "category": {
+                            "type": "string",
+                            "enum": [
+                                "performance",
+                                "accessibility",
+                                "best-practices",
+                                "seo"
+                            ],
+                            "description": "Lighthouse category the audit belongs to."
+                        },
+                        "score": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "description": "Audit score from 0 to 1 (0 is a full fail)."
+                        },
+                        "displayValue": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "description": "Short summary as shown in the Lighthouse report."
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "title",
+                        "category",
+                        "score",
+                        "displayValue"
+                    ]
+                }
+            },
+            "runWarnings": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "Warnings Lighthouse emitted during the run (for example about redirects or throttling)."
+            },
+            "lighthouseVersion": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "Version of Lighthouse Google used for this audit."
+            },
+            "analysisTimestamp": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "format": "date-time",
+                "description": "When Google ran the analysis, as an ISO 8601 timestamp."
+            },
+            "fetchedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When the actor stored this record, as an ISO 8601 timestamp."
+            },
+            "errorType": {
+                "type": "string",
+                "enum": [
+                    "missing-api-key",
+                    "invalid-url",
+                    "rate-limited",
+                    "http-error",
+                    "dns",
+                    "timeout",
+                    "network",
+                    "other"
+                ],
+                "description": "Failure records only: category of the problem, e.g. \"rate-limited\" when the API quota is exhausted."
+            },
+            "error": {
+                "type": "string",
+                "description": "Failure records only: human-readable explanation of what went wrong."
+            },
+            "statusCode": {
+                "type": "integer",
+                "description": "Failure records only: HTTP status code returned by the PageSpeed Insights API, when there was one."
+            }
+        },
+        "required": [
+            "url",
+            "strategy",
+            "success",
+            "fetchedAt"
+        ]
+    },
     "views": {
         "overview": {
             "title": "Overview",
             "transformation": {
-                "fields": ["url", "strategy", "success", "scores", "fieldData", "errorType", "error"]
+                "fields": [
+                    "url",
+                    "strategy",
+                    "success",
+                    "scores",
+                    "fieldData",
+                    "errorType",
+                    "error"
+                ]
             },
             "display": {
                 "component": "table",
                 "properties": {
-                    "url": { "label": "Page", "format": "link" },
-                    "strategy": { "label": "Device", "format": "text" },
-                    "success": { "label": "OK", "format": "boolean" },
-                    "scores.performance": { "label": "Performance", "format": "number" },
-                    "scores.accessibility": { "label": "Accessibility", "format": "number" },
-                    "scores.bestPractices": { "label": "Best practices", "format": "number" },
-                    "scores.seo": { "label": "SEO", "format": "number" },
-                    "fieldData.overallCategory": { "label": "Core Web Vitals (field)", "format": "text" },
-                    "errorType": { "label": "Error type", "format": "text" },
-                    "error": { "label": "Error", "format": "text" }
+                    "url": {
+                        "label": "Page",
+                        "format": "link"
+                    },
+                    "strategy": {
+                        "label": "Device",
+                        "format": "text"
+                    },
+                    "success": {
+                        "label": "OK",
+                        "format": "boolean"
+                    },
+                    "scores.performance": {
+                        "label": "Performance",
+                        "format": "number"
+                    },
+                    "scores.accessibility": {
+                        "label": "Accessibility",
+                        "format": "number"
+                    },
+                    "scores.bestPractices": {
+                        "label": "Best practices",
+                        "format": "number"
+                    },
+                    "scores.seo": {
+                        "label": "SEO",
+                        "format": "number"
+                    },
+                    "fieldData.overallCategory": {
+                        "label": "Core Web Vitals (field)",
+                        "format": "text"
+                    },
+                    "errorType": {
+                        "label": "Error type",
+                        "format": "text"
+                    },
+                    "error": {
+                        "label": "Error",
+                        "format": "text"
+                    }
                 }
             }
         },
         "labMetrics": {
             "title": "Lab metrics",
             "transformation": {
-                "fields": ["url", "strategy", "labMetrics", "lighthouseVersion", "analysisTimestamp"]
+                "fields": [
+                    "url",
+                    "strategy",
+                    "labMetrics",
+                    "lighthouseVersion",
+                    "analysisTimestamp"
+                ]
             },
             "display": {
                 "component": "table",
                 "properties": {
-                    "url": { "label": "Page", "format": "link" },
-                    "strategy": { "label": "Device", "format": "text" },
-                    "labMetrics.fcpMs": { "label": "FCP (ms)", "format": "number" },
-                    "labMetrics.lcpMs": { "label": "LCP (ms)", "format": "number" },
-                    "labMetrics.cls": { "label": "CLS", "format": "number" },
-                    "labMetrics.tbtMs": { "label": "TBT (ms)", "format": "number" },
-                    "labMetrics.speedIndexMs": { "label": "Speed Index (ms)", "format": "number" },
-                    "labMetrics.ttiMs": { "label": "TTI (ms)", "format": "number" },
-                    "lighthouseVersion": { "label": "Lighthouse", "format": "text" },
-                    "analysisTimestamp": { "label": "Analyzed at", "format": "date" }
+                    "url": {
+                        "label": "Page",
+                        "format": "link"
+                    },
+                    "strategy": {
+                        "label": "Device",
+                        "format": "text"
+                    },
+                    "labMetrics.fcpMs": {
+                        "label": "FCP (ms)",
+                        "format": "number"
+                    },
+                    "labMetrics.lcpMs": {
+                        "label": "LCP (ms)",
+                        "format": "number"
+                    },
+                    "labMetrics.cls": {
+                        "label": "CLS",
+                        "format": "number"
+                    },
+                    "labMetrics.tbtMs": {
+                        "label": "TBT (ms)",
+                        "format": "number"
+                    },
+                    "labMetrics.speedIndexMs": {
+                        "label": "Speed Index (ms)",
+                        "format": "number"
+                    },
+                    "labMetrics.ttiMs": {
+                        "label": "TTI (ms)",
+                        "format": "number"
+                    },
+                    "lighthouseVersion": {
+                        "label": "Lighthouse",
+                        "format": "text"
+                    },
+                    "analysisTimestamp": {
+                        "label": "Analyzed at",
+                        "format": "date"
+                    }
                 }
             }
         },
         "opportunities": {
             "title": "Opportunities",
             "transformation": {
-                "fields": ["url", "strategy", "opportunities"],
-                "unwind": ["opportunities"]
+                "fields": [
+                    "url",
+                    "strategy",
+                    "opportunities"
+                ],
+                "unwind": [
+                    "opportunities"
+                ]
             },
             "display": {
                 "component": "table",
                 "properties": {
-                    "url": { "label": "Page", "format": "link" },
-                    "strategy": { "label": "Device", "format": "text" },
-                    "opportunities.title": { "label": "Opportunity", "format": "text" },
-                    "opportunities.savingsMs": { "label": "Est. savings (ms)", "format": "number" },
-                    "opportunities.savingsBytes": { "label": "Est. savings (bytes)", "format": "number" },
-                    "opportunities.displayValue": { "label": "Detail", "format": "text" }
+                    "url": {
+                        "label": "Page",
+                        "format": "link"
+                    },
+                    "strategy": {
+                        "label": "Device",
+                        "format": "text"
+                    },
+                    "opportunities.title": {
+                        "label": "Opportunity",
+                        "format": "text"
+                    },
+                    "opportunities.savingsMs": {
+                        "label": "Est. savings (ms)",
+                        "format": "number"
+                    },
+                    "opportunities.savingsBytes": {
+                        "label": "Est. savings (bytes)",
+                        "format": "number"
+                    },
+                    "opportunities.displayValue": {
+                        "label": "Detail",
+                        "format": "text"
+                    }
                 }
             }
         }

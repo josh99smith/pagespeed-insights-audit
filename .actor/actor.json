@@ -3,7 +3,7 @@
     "actorSpecification": 1,
     "name": "pagespeed-insights-audit",
     "title": "PageSpeed Insights Core Web Vitals Audit",
-    "description": "Audit lists of URLs with Google's official PageSpeed Insights API: Lighthouse performance, accessibility, best-practices and SEO scores, lab metrics (LCP, CLS, TBT, FCP, Speed Index) and real-user Core Web Vitals field data for mobile and desktop.",
+    "description": "Bulk PageSpeed Insights and Core Web Vitals audits via Google's official API: performance, SEO, accessibility scores, LCP, INP, CLS for many URLs.",
     "version": "0.1",
     "buildTag": "latest",
     "meta": {

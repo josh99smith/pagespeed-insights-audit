@@ -1,6 +1,17 @@
-Audit any list of pages with **Google's official PageSpeed Insights API** and get back the **Lighthouse performance, accessibility, best-practices and SEO scores**, the lab metrics behind them (LCP, CLS, TBT, FCP, Speed Index, TTI) and real-user **Core Web Vitals field data**, for mobile and desktop, in one downloadable dataset.
+Audit any list of pages with the official **PageSpeed Insights API** and get back Core Web Vitals plus the **Lighthouse performance, accessibility, best-practices and SEO scores**, the lab metrics behind them (LCP, CLS, TBT, FCP, Speed Index, TTI) and real-user field data, for mobile and desktop, in one downloadable dataset.
 
 Built for **SEO agencies, web developers and site owners** who need the same numbers as pagespeed.web.dev for dozens or thousands of URLs at once. You pay a flat price per audited page; pages Google cannot audit are reported free of charge.
+
+## Features
+
+- Check Core Web Vitals for a list of URLs in bulk
+- Get Lighthouse performance, accessibility, SEO and best-practices scores via API
+- Run PageSpeed Insights on mobile and desktop in one run
+- Export PageSpeed scores to CSV, Excel or Google Sheets
+- Get LCP, INP, CLS, TTFB field data from the Chrome UX Report
+- List the top Lighthouse opportunities with estimated savings per page
+- Schedule weekly PageSpeed monitoring for client websites
+- Use your own Google PageSpeed API key for a dedicated quota
 
 ## What can you do with PageSpeed Insights Core Web Vitals Audit?
 
@@ -24,8 +35,6 @@ Each audit takes Google roughly 10 to 30 seconds, so 100 URLs at the default con
 3. Optionally narrow the **Lighthouse categories** and switch on **Include audit details** to get the top opportunities and failing audits.
 4. Click **Start**. Results appear in the **Output** tab as they arrive; download them as JSON, CSV or Excel, or connect an integration.
 
-To run it from code, use the **API** tab or the official [JavaScript](https://docs.apify.com/api/client/js) and [Python](https://docs.apify.com/api/client/python) clients.
-
 ```json
 {
     "urls": ["https://example.com", "https://www.wikipedia.org"],
@@ -34,6 +43,46 @@ To run it from code, use the **API** tab or the official [JavaScript](https://do
     "includeAuditDetails": true
 }
 ```
+
+## Use it from the API, Python, JavaScript or an AI agent
+
+Audit a few URLs and get the results back in one HTTP call:
+
+```bash
+curl -X POST "https://api.apify.com/v2/acts/josh99smith~pagespeed-insights-audit/run-sync-get-dataset-items?token=<YOUR_API_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{"urls": ["https://example.com"], "strategy": "mobile"}'
+```
+
+Python, with the `apify-client` package:
+
+```python
+from apify_client import ApifyClient
+
+client = ApifyClient("<YOUR_API_TOKEN>")
+run = client.actor("josh99smith/pagespeed-insights-audit").call(
+    run_input={"urls": ["https://example.com", "https://www.wikipedia.org"], "strategy": "both", "includeAuditDetails": True}
+)
+for item in client.dataset(run["defaultDatasetId"]).iterate_items():
+    print(item["url"], item["strategy"], item.get("scores"))
+```
+
+JavaScript or TypeScript, with the `apify-client` package:
+
+```javascript
+import { ApifyClient } from "apify-client";
+
+const client = new ApifyClient({ token: "<YOUR_API_TOKEN>" });
+const run = await client.actor("josh99smith/pagespeed-insights-audit").call({
+    urls: ["https://example.com", "https://www.wikipedia.org"],
+    strategy: "mobile",
+    categories: ["performance", "seo"],
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items);
+```
+
+The Actor is also available as a tool through the Apify MCP server for AI agents, and it can be scheduled or connected to Zapier, Make, n8n and Google Sheets in the **Integrations** tab.
 
 ## Output
 
@@ -101,20 +150,20 @@ Pages that could not be audited are still recorded, so nothing silently disappea
 }
 ```
 
-### Fields
+## Output fields
 
-| Field                                     | Description                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `url` / `finalUrl`                        | The URL you supplied and the URL Lighthouse ended on after redirects.                                                                                                                                                                                                                                                                                        |
-| `strategy`                                | `mobile` or `desktop`.                                                                                                                                                                                                                                                                                                                                       |
-| `success`                                 | `true` when Google returned a usable Lighthouse report. Only these records are billed.                                                                                                                                                                                                                                                                       |
-| `scores`                                  | Lighthouse category scores as integers from 0 to 100 (`null` for categories you did not request). 90+ is "good", 50 to 89 "needs improvement".                                                                                                                                                                                                               |
-| `labMetrics`                              | Lighthouse lab measurements from Google's test device: First Contentful Paint, Largest Contentful Paint, Cumulative Layout Shift, Total Blocking Time, Speed Index and Time to Interactive. Times in milliseconds.                                                                                                                                           |
-| `fieldData`                               | Real-user Core Web Vitals from the Chrome UX Report (28-day 75th percentile): LCP, INP, CLS, FCP and TTFB, each with `percentile` and `category` (`FAST`, `AVERAGE`, `SLOW`), plus the `overallCategory` Google uses. `null` when the page has too little traffic. `originFallback` is `true` when the numbers are for the whole origin instead of the page. |
-| `opportunities[]`                         | With **Include audit details**: failing performance audits with estimated `savingsMs` / `savingsBytes`, largest first, up to 15.                                                                                                                                                                                                                             |
-| `failedAudits[]`                          | With **Include audit details**: failing accessibility, best-practices and SEO audits, most heavily weighted first, up to 15.                                                                                                                                                                                                                                 |
-| `lighthouseVersion` / `analysisTimestamp` | The Lighthouse version Google used and when the analysis ran.                                                                                                                                                                                                                                                                                                |
-| `errorType`                               | For failures: `invalid-url`, `rate-limited`, `http-error`, `dns`, `timeout`, `network`, `missing-api-key` or `other`.                                                                                                                                                                                                                                        |
+| Field                                     | Description                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `url` / `finalUrl`                        | The URL you supplied and the URL Lighthouse ended on after redirects.                                                                                                                                                                                                                             |
+| `strategy`                                | `mobile` or `desktop`.                                                                                                                                                                                                                                                                            |
+| `success`                                 | `true` when Google returned a usable Lighthouse report. Only these records are billed.                                                                                                                                                                                                            |
+| `scores`                                  | Lighthouse category scores as integers from 0 to 100 (`null` for categories you did not request). 90+ is "good", 50 to 89 "needs improvement".                                                                                                                                                    |
+| `labMetrics`                              | Lighthouse lab measurements from Google's test device: FCP, LCP, CLS, TBT, Speed Index and TTI. Times in milliseconds.                                                                                                                                                                            |
+| `fieldData`                               | Real-user Core Web Vitals from the Chrome UX Report (28-day 75th percentile): LCP, INP, CLS, FCP and TTFB, each with `percentile` and `category` (`FAST`, `AVERAGE`, `SLOW`), plus Google's `overallCategory`. `null` when the page has too little traffic; `originFallback` marks origin-level data. |
+| `opportunities[]`                         | With **Include audit details**: failing performance audits with estimated `savingsMs` / `savingsBytes`, largest first, up to 15.                                                                                                                                                                  |
+| `failedAudits[]`                          | With **Include audit details**: failing accessibility, best-practices and SEO audits, most heavily weighted first, up to 15.                                                                                                                                                                      |
+| `lighthouseVersion` / `analysisTimestamp` | The Lighthouse version Google used and when the analysis ran.                                                                                                                                                                                                                                     |
+| `errorType`                               | For failures: `invalid-url`, `rate-limited`, `http-error`, `dns`, `timeout`, `network`, `missing-api-key` or `other`.                                                                                                                                                                             |
 
 ## Pricing: how much does it cost to audit a page with PageSpeed Insights?
 
@@ -134,20 +183,36 @@ By default the Actor uses a built-in Google API key shared by all its users. The
 
 ## FAQ
 
-**Are the numbers identical to pagespeed.web.dev?**
+### Are the numbers identical to pagespeed.web.dev?
+
 Yes: same API, same Lighthouse run in Google's data centre, subject only to the usual run-to-run variance.
 
-**Why is `fieldData` null for my page?**
+### Why is fieldData null for my page?
+
 Google only publishes Chrome UX Report data for pages and origins with enough real-user traffic. Low-traffic pages have lab data only.
 
-**Can it audit pages behind a login, or a staging site?**
+### Can it audit pages behind a login, or a staging site?
+
 No. Google's servers must be able to fetch the page publicly; protected or localhost pages fail with `http-error`.
 
-**Is this legal / does it scrape Google?**
+### Is this legal, and does it scrape Google?
+
 No scraping is involved. The Actor uses Google's official, documented PageSpeed Insights API under its terms of service and audits only the public pages you specify.
 
-**What happens when the quota is exhausted?**
-Affected URLs are reported as free `rate-limited` failures and the run finishes normally. Supply your own key for a dedicated quota.
+### How many URLs can I audit, and what happens when the quota is exhausted?
+
+There is no hard limit on list size; the shared key allows a few hundred audits per minute and 25,000 per day across all users, and your own key gives you that quota to yourself. When a quota is exhausted, affected URLs are reported as free `rate-limited` failures and the run finishes normally.
+
+## Related Actors by the same developer
+
+- [Tech Stack Detector](https://apify.com/josh99smith/tech-stack-detector): find out what a website is built with.
+- [Website Screenshot API](https://apify.com/josh99smith/website-screenshot-api): full-page screenshots and PDFs of any URL.
+- [Google Autocomplete Scraper](https://apify.com/josh99smith/google-autocomplete-scraper): keyword suggestions from Google search.
+- [App Reviews Scraper](https://apify.com/josh99smith/app-reviews-scraper): App Store and Google Play reviews as JSON.
+- [Remote Jobs Aggregator](https://apify.com/josh99smith/remote-jobs-aggregator): remote job listings from five public boards.
+- [PDF Text Extractor](https://apify.com/josh99smith/pdf-text-extractor): text and metadata from PDF files.
+- [Sitemap URL Extractor](https://apify.com/josh99smith/sitemap-url-extractor): all URLs from XML sitemaps.
+- [RSS Feed to JSON](https://apify.com/josh99smith/rss-feed-to-json): RSS and Atom feeds as JSON.
 
 ## Support and feedback
 

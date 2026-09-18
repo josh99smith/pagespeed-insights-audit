@@ -1,0 +1,66 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": ["url", "strategy", "success", "scores", "fieldData", "errorType", "error"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "Page", "format": "link" },
+                    "strategy": { "label": "Device", "format": "text" },
+                    "success": { "label": "OK", "format": "boolean" },
+                    "scores.performance": { "label": "Performance", "format": "number" },
+                    "scores.accessibility": { "label": "Accessibility", "format": "number" },
+                    "scores.bestPractices": { "label": "Best practices", "format": "number" },
+                    "scores.seo": { "label": "SEO", "format": "number" },
+                    "fieldData.overallCategory": { "label": "Core Web Vitals (field)", "format": "text" },
+                    "errorType": { "label": "Error type", "format": "text" },
+                    "error": { "label": "Error", "format": "text" }
+                }
+            }
+        },
+        "labMetrics": {
+            "title": "Lab metrics",
+            "transformation": {
+                "fields": ["url", "strategy", "labMetrics", "lighthouseVersion", "analysisTimestamp"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "Page", "format": "link" },
+                    "strategy": { "label": "Device", "format": "text" },
+                    "labMetrics.fcpMs": { "label": "FCP (ms)", "format": "number" },
+                    "labMetrics.lcpMs": { "label": "LCP (ms)", "format": "number" },
+                    "labMetrics.cls": { "label": "CLS", "format": "number" },
+                    "labMetrics.tbtMs": { "label": "TBT (ms)", "format": "number" },
+                    "labMetrics.speedIndexMs": { "label": "Speed Index (ms)", "format": "number" },
+                    "labMetrics.ttiMs": { "label": "TTI (ms)", "format": "number" },
+                    "lighthouseVersion": { "label": "Lighthouse", "format": "text" },
+                    "analysisTimestamp": { "label": "Analyzed at", "format": "date" }
+                }
+            }
+        },
+        "opportunities": {
+            "title": "Opportunities",
+            "transformation": {
+                "fields": ["url", "strategy", "opportunities"],
+                "unwind": ["opportunities"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "Page", "format": "link" },
+                    "strategy": { "label": "Device", "format": "text" },
+                    "opportunities.title": { "label": "Opportunity", "format": "text" },
+                    "opportunities.savingsMs": { "label": "Est. savings (ms)", "format": "number" },
+                    "opportunities.savingsBytes": { "label": "Est. savings (bytes)", "format": "number" },
+                    "opportunities.displayValue": { "label": "Detail", "format": "text" }
+                }
+            }
+        }
+    }
+}

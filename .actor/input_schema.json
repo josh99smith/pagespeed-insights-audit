@@ -1,0 +1,73 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "PageSpeed Insights Core Web Vitals Audit input",
+    "description": "Paste the page URLs to audit. Each successfully audited URL x strategy is one billable result; URLs that cannot be audited are reported for free.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "urls": {
+            "title": "Page URLs",
+            "type": "array",
+            "description": "One page per line (or a JSON array of URLs). The scheme is optional: `example.com` and `https://example.com` both work. Duplicates are removed automatically. Each audit takes Google roughly 10 to 30 seconds.",
+            "editor": "stringList",
+            "prefill": ["https://example.com", "https://www.wikipedia.org"],
+            "uniqueItems": true
+        },
+        "strategy": {
+            "title": "Device strategy",
+            "type": "string",
+            "description": "Run the audit with mobile emulation (what Google Search uses for ranking), desktop, or both (two results per URL).",
+            "editor": "select",
+            "enum": ["mobile", "desktop", "both"],
+            "enumTitles": ["Mobile", "Desktop", "Both (mobile + desktop)"],
+            "default": "mobile"
+        },
+        "categories": {
+            "title": "Lighthouse categories",
+            "type": "array",
+            "description": "Which Lighthouse categories to score. Fewer categories make each audit a little faster. Leaving the list empty selects all four.",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["performance", "accessibility", "best-practices", "seo"],
+                "enumTitles": ["Performance", "Accessibility", "Best practices", "SEO"]
+            },
+            "default": ["performance", "accessibility", "best-practices", "seo"],
+            "prefill": ["performance", "accessibility", "best-practices", "seo"],
+            "uniqueItems": true
+        },
+        "includeAuditDetails": {
+            "title": "Include audit details",
+            "type": "boolean",
+            "description": "Add the top failing performance opportunities (with estimated time and byte savings) and the failing accessibility, best-practices and SEO audits to every result. Up to 15 of each.",
+            "default": false
+        },
+        "apiKey": {
+            "title": "Google API key",
+            "type": "string",
+            "description": "Optional. Your own free PageSpeed Insights API key (Google Cloud Console > APIs & Services > Credentials, with the PageSpeed Insights API enabled). Without it the Actor uses a shared key with a shared daily quota; supplying your own key gives you a dedicated quota of 25,000 audits per day.",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "How many audits to request from Google in parallel. Each audit takes 10 to 30 seconds on Google's side, so 4 to 6 is a good balance; higher values increase the chance of hitting the per-minute quota.",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 10,
+            "editor": "number",
+            "sectionCaption": "Advanced"
+        },
+        "timeoutSecs": {
+            "title": "Request timeout (seconds)",
+            "type": "integer",
+            "description": "Give up on a single audit after this many seconds. Google occasionally needs more than a minute for very heavy pages.",
+            "default": 120,
+            "minimum": 30,
+            "maximum": 300,
+            "editor": "number"
+        }
+    },
+    "required": ["urls"]
+}

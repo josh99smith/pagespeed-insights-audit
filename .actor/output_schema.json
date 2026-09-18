@@ -1,0 +1,18 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "PageSpeed Insights Core Web Vitals Audit output",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Audit results",
+            "template": "{{links.apiDefaultDatasetUrl}}",
+            "description": "One record per URL and strategy with Lighthouse scores, lab metrics, Core Web Vitals field data and (optionally) the top failing audits."
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/SUMMARY",
+            "description": "Counts of requested, audited, failed, skipped and billed audits."
+        }
+    }
+}

@@ -1,0 +1,439 @@
+{
+    "captchaResult": "CAPTCHA_NOT_NEEDED",
+    "kind": "pagespeedonline#result",
+    "id": "https://example.com/",
+    "loadingExperience": {
+        "id": "https://example.com/",
+        "metrics": {
+            "CUMULATIVE_LAYOUT_SHIFT_SCORE": {
+                "percentile": 5,
+                "distributions": [
+                    { "min": 0, "max": 10, "proportion": 0.9412 },
+                    { "min": 10, "max": 25, "proportion": 0.0311 },
+                    { "min": 25, "proportion": 0.0277 }
+                ],
+                "category": "FAST"
+            },
+            "EXPERIMENTAL_TIME_TO_FIRST_BYTE": {
+                "percentile": 612,
+                "distributions": [
+                    { "min": 0, "max": 800, "proportion": 0.7734 },
+                    { "min": 800, "max": 1800, "proportion": 0.1743 },
+                    { "min": 1800, "proportion": 0.0523 }
+                ],
+                "category": "FAST"
+            },
+            "FIRST_CONTENTFUL_PAINT_MS": {
+                "percentile": 1312,
+                "distributions": [
+                    { "min": 0, "max": 1800, "proportion": 0.8123 },
+                    { "min": 1800, "max": 3000, "proportion": 0.1298 },
+                    { "min": 3000, "proportion": 0.0579 }
+                ],
+                "category": "FAST"
+            },
+            "INTERACTION_TO_NEXT_PAINT": {
+                "percentile": 214,
+                "distributions": [
+                    { "min": 0, "max": 200, "proportion": 0.7015 },
+                    { "min": 200, "max": 500, "proportion": 0.2333 },
+                    { "min": 500, "proportion": 0.0652 }
+                ],
+                "category": "AVERAGE"
+            },
+            "LARGEST_CONTENTFUL_PAINT_MS": {
+                "percentile": 2371,
+                "distributions": [
+                    { "min": 0, "max": 2500, "proportion": 0.7871 },
+                    { "min": 2500, "max": 4000, "proportion": 0.1471 },
+                    { "min": 4000, "proportion": 0.0658 }
+                ],
+                "category": "FAST"
+            }
+        },
+        "overall_category": "FAST",
+        "initial_url": "https://example.com/"
+    },
+    "originLoadingExperience": {
+        "id": "https://example.com",
+        "metrics": {
+            "CUMULATIVE_LAYOUT_SHIFT_SCORE": { "percentile": 6, "distributions": [], "category": "FAST" },
+            "EXPERIMENTAL_TIME_TO_FIRST_BYTE": { "percentile": 640, "distributions": [], "category": "FAST" },
+            "FIRST_CONTENTFUL_PAINT_MS": { "percentile": 1401, "distributions": [], "category": "FAST" },
+            "INTERACTION_TO_NEXT_PAINT": { "percentile": 231, "distributions": [], "category": "AVERAGE" },
+            "LARGEST_CONTENTFUL_PAINT_MS": { "percentile": 2499, "distributions": [], "category": "FAST" }
+        },
+        "overall_category": "FAST",
+        "initial_url": "https://example.com/"
+    },
+    "lighthouseResult": {
+        "requestedUrl": "https://example.com/",
+        "finalUrl": "https://example.com/",
+        "mainDocumentUrl": "https://example.com/",
+        "finalDisplayedUrl": "https://example.com/",
+        "lighthouseVersion": "12.8.2",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "fetchTime": "2026-09-18T20:41:07.512Z",
+        "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1893.5,
+            "credits": { "axe-core": "4.10.3" }
+        },
+        "runWarnings": [],
+        "configSettings": {
+            "emulatedFormFactor": "mobile",
+            "formFactor": "mobile",
+            "locale": "en-US",
+            "onlyCategories": ["performance", "accessibility", "best-practices", "seo"],
+            "channel": "lr"
+        },
+        "audits": {
+            "first-contentful-paint": {
+                "id": "first-contentful-paint",
+                "title": "First Contentful Paint",
+                "description": "First Contentful Paint marks the time at which the first text or image is painted. [Learn more about the First Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/).",
+                "score": 0.79,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "2.1 s",
+                "numericValue": 2143.6,
+                "numericUnit": "millisecond"
+            },
+            "largest-contentful-paint": {
+                "id": "largest-contentful-paint",
+                "title": "Largest Contentful Paint",
+                "description": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more about the Largest Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/)",
+                "score": 0.61,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "3.4 s",
+                "numericValue": 3412.9,
+                "numericUnit": "millisecond"
+            },
+            "cumulative-layout-shift": {
+                "id": "cumulative-layout-shift",
+                "title": "Cumulative Layout Shift",
+                "description": "Cumulative Layout Shift measures the movement of visible elements within the viewport. [Learn more about the Cumulative Layout Shift metric](https://web.dev/articles/cls).",
+                "score": 0.98,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "0.042",
+                "numericValue": 0.04187213,
+                "numericUnit": "unitless"
+            },
+            "total-blocking-time": {
+                "id": "total-blocking-time",
+                "title": "Total Blocking Time",
+                "description": "Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. [Learn more about the Total Blocking Time metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/).",
+                "score": 0.66,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "420 ms",
+                "numericValue": 419.5,
+                "numericUnit": "millisecond"
+            },
+            "speed-index": {
+                "id": "speed-index",
+                "title": "Speed Index",
+                "description": "Speed Index shows how quickly the contents of a page are visibly populated. [Learn more about the Speed Index metric](https://developer.chrome.com/docs/lighthouse/performance/speed-index/).",
+                "score": 0.84,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "3.2 s",
+                "numericValue": 3187.2,
+                "numericUnit": "millisecond"
+            },
+            "interactive": {
+                "id": "interactive",
+                "title": "Time to Interactive",
+                "description": "Time to Interactive is the amount of time it takes for the page to become fully interactive. [Learn more about the Time to Interactive metric](https://developer.chrome.com/docs/lighthouse/performance/interactive/).",
+                "score": 0.72,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "4.9 s",
+                "numericValue": 4902.3,
+                "numericUnit": "millisecond"
+            },
+            "server-response-time": {
+                "id": "server-response-time",
+                "title": "Initial server response time was short",
+                "description": "Keep the server response time for the main document short because all other requests depend on it. [Learn more about the Time to First Byte metric](https://developer.chrome.com/docs/lighthouse/performance/time-to-first-byte/).",
+                "score": 1,
+                "scoreDisplayMode": "metricSavings",
+                "displayValue": "Root document took 310 ms",
+                "numericValue": 310,
+                "numericUnit": "millisecond",
+                "metricSavings": { "FCP": 0, "LCP": 0 },
+                "details": { "type": "opportunity", "headings": [], "items": [], "overallSavingsMs": 0 }
+            },
+            "render-blocking-resources": {
+                "id": "render-blocking-resources",
+                "title": "Eliminate render-blocking resources",
+                "description": "Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles. [Learn how to eliminate render-blocking resources](https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/).",
+                "score": 0.42,
+                "scoreDisplayMode": "metricSavings",
+                "displayValue": "Est savings of 780 ms",
+                "numericValue": 780,
+                "numericUnit": "millisecond",
+                "metricSavings": { "FCP": 780, "LCP": 780 },
+                "details": {
+                    "type": "opportunity",
+                    "headings": [
+                        { "key": "url", "valueType": "url", "label": "URL" },
+                        { "key": "totalBytes", "valueType": "bytes", "label": "Transfer Size" },
+                        { "key": "wastedMs", "valueType": "timespanMs", "label": "Potential Savings" }
+                    ],
+                    "items": [
+                        { "url": "https://example.com/assets/app.css", "totalBytes": 48210, "wastedMs": 480 },
+                        { "url": "https://example.com/assets/vendor.js", "totalBytes": 91330, "wastedMs": 300 }
+                    ],
+                    "overallSavingsMs": 780
+                }
+            },
+            "unused-javascript": {
+                "id": "unused-javascript",
+                "title": "Reduce unused JavaScript",
+                "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+                "score": 0.5,
+                "scoreDisplayMode": "metricSavings",
+                "displayValue": "Est savings of 118 KiB",
+                "numericValue": 450,
+                "numericUnit": "millisecond",
+                "metricSavings": { "FCP": 0, "LCP": 450 },
+                "details": {
+                    "type": "opportunity",
+                    "headings": [],
+                    "items": [
+                        {
+                            "url": "https://example.com/assets/vendor.js",
+                            "totalBytes": 91330,
+                            "wastedBytes": 61800,
+                            "wastedPercent": 67.7
+                        }
+                    ],
+                    "overallSavingsMs": 450,
+                    "overallSavingsBytes": 120832
+                }
+            },
+            "modern-image-formats": {
+                "id": "modern-image-formats",
+                "title": "Serve images in next-gen formats",
+                "description": "Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption. [Learn more about modern image formats](https://developer.chrome.com/docs/lighthouse/performance/uses-webp-images/).",
+                "score": 0.75,
+                "scoreDisplayMode": "metricSavings",
+                "displayValue": "Est savings of 64 KiB",
+                "numericValue": 150,
+                "numericUnit": "millisecond",
+                "metricSavings": { "FCP": 0, "LCP": 150 },
+                "details": {
+                    "type": "opportunity",
+                    "headings": [],
+                    "items": [
+                        { "url": "https://example.com/images/hero.jpg", "totalBytes": 98304, "wastedBytes": 65536 }
+                    ],
+                    "overallSavingsMs": 150,
+                    "overallSavingsBytes": 65536
+                }
+            },
+            "uses-text-compression": {
+                "id": "uses-text-compression",
+                "title": "Enable text compression",
+                "description": "Text-based resources should be served with compression (gzip, deflate or brotli) to minimize total network bytes. [Learn more about text compression](https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/).",
+                "score": 1,
+                "scoreDisplayMode": "metricSavings",
+                "numericValue": 0,
+                "numericUnit": "millisecond",
+                "metricSavings": { "FCP": 0, "LCP": 0 },
+                "details": {
+                    "type": "opportunity",
+                    "headings": [],
+                    "items": [],
+                    "overallSavingsMs": 0,
+                    "overallSavingsBytes": 0
+                }
+            },
+            "lcp-lazy-loaded": {
+                "id": "lcp-lazy-loaded",
+                "title": "Largest Contentful Paint image was not lazily loaded",
+                "description": "Above-the-fold images that are lazily loaded render later in the page lifecycle, which can delay the largest contentful paint. [Learn more about optimal lazy loading](https://web.dev/articles/lcp-lazy-loading).",
+                "score": 1,
+                "scoreDisplayMode": "binary",
+                "metricSavings": { "LCP": 0 }
+            },
+            "uses-long-cache-ttl": {
+                "id": "uses-long-cache-ttl",
+                "title": "Serve static assets with an efficient cache policy",
+                "description": "A long cache lifetime can speed up repeat visits to your page. [Learn more about efficient cache policies](https://developer.chrome.com/docs/lighthouse/performance/uses-long-cache-ttl/).",
+                "score": 0.5,
+                "scoreDisplayMode": "numeric",
+                "displayValue": "3 resources found",
+                "numericValue": 21430,
+                "numericUnit": "byte",
+                "details": { "type": "table", "headings": [], "items": [] }
+            },
+            "diagnostics": {
+                "id": "diagnostics",
+                "title": "Diagnostics",
+                "description": "Collection of useful page vitals.",
+                "score": 1,
+                "scoreDisplayMode": "informative",
+                "details": {
+                    "type": "debugdata",
+                    "items": [{ "numRequests": 42, "numScripts": 9, "totalByteWeight": 812345 }]
+                }
+            },
+            "color-contrast": {
+                "id": "color-contrast",
+                "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+                "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+                "score": 0,
+                "scoreDisplayMode": "binary",
+                "displayValue": "3 failing elements",
+                "details": {
+                    "type": "table",
+                    "headings": [],
+                    "items": [{ "node": { "type": "node", "selector": "p.small" } }]
+                }
+            },
+            "image-alt": {
+                "id": "image-alt",
+                "title": "Image elements have `[alt]` attributes",
+                "description": "Informative elements should aim for short, descriptive alternate text. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+                "score": 1,
+                "scoreDisplayMode": "binary"
+            },
+            "html-has-lang": {
+                "id": "html-has-lang",
+                "title": "`<html>` element has a `[lang]` attribute",
+                "description": "If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language. [Learn more about the `lang` attribute](https://dequeuniversity.com/rules/axe/4.10/html-has-lang).",
+                "score": 1,
+                "scoreDisplayMode": "binary"
+            },
+            "errors-in-console": {
+                "id": "errors-in-console",
+                "title": "Browser errors were logged to the console",
+                "description": "Errors logged to the console indicate unresolved problems. [Learn more about this errors in console diagnostic audit](https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/)",
+                "score": 0,
+                "scoreDisplayMode": "binary",
+                "details": {
+                    "type": "table",
+                    "headings": [],
+                    "items": [{ "source": "console.error", "description": "Uncaught TypeError: x is not a function" }]
+                }
+            },
+            "is-on-https": {
+                "id": "is-on-https",
+                "title": "Uses HTTPS",
+                "description": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. [Learn more about HTTPS](https://developer.chrome.com/docs/lighthouse/pwa/is-on-https/).",
+                "score": 1,
+                "scoreDisplayMode": "binary"
+            },
+            "meta-description": {
+                "id": "meta-description",
+                "title": "Document has a meta description",
+                "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+                "score": 1,
+                "scoreDisplayMode": "binary"
+            },
+            "document-title": {
+                "id": "document-title",
+                "title": "Document has a `<title>` element",
+                "description": "The title gives screen reader users an overview of the page. [Learn more about document titles](https://developer.chrome.com/docs/lighthouse/seo/document-title/).",
+                "score": 1,
+                "scoreDisplayMode": "binary"
+            },
+            "robots-txt": {
+                "id": "robots-txt",
+                "title": "robots.txt is valid",
+                "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+                "score": 1,
+                "scoreDisplayMode": "binary"
+            },
+            "structured-data": {
+                "id": "structured-data",
+                "title": "Structured data is valid",
+                "description": "Run the Structured Data Testing Tool to validate structured data.",
+                "score": null,
+                "scoreDisplayMode": "manual"
+            }
+        },
+        "categories": {
+            "performance": {
+                "id": "performance",
+                "title": "Performance",
+                "score": 0.72,
+                "auditRefs": [
+                    { "id": "first-contentful-paint", "weight": 10, "group": "metrics", "acronym": "FCP" },
+                    { "id": "largest-contentful-paint", "weight": 25, "group": "metrics", "acronym": "LCP" },
+                    { "id": "total-blocking-time", "weight": 30, "group": "metrics", "acronym": "TBT" },
+                    { "id": "cumulative-layout-shift", "weight": 25, "group": "metrics", "acronym": "CLS" },
+                    { "id": "speed-index", "weight": 10, "group": "metrics", "acronym": "SI" },
+                    { "id": "interactive", "weight": 0, "group": "hidden", "acronym": "TTI" },
+                    { "id": "server-response-time", "weight": 0, "group": "diagnostics" },
+                    { "id": "render-blocking-resources", "weight": 0, "group": "diagnostics" },
+                    { "id": "unused-javascript", "weight": 0, "group": "diagnostics" },
+                    { "id": "modern-image-formats", "weight": 0, "group": "diagnostics" },
+                    { "id": "uses-text-compression", "weight": 0, "group": "diagnostics" },
+                    { "id": "lcp-lazy-loaded", "weight": 0, "group": "diagnostics" },
+                    { "id": "uses-long-cache-ttl", "weight": 0, "group": "diagnostics" },
+                    { "id": "diagnostics", "weight": 0, "group": "hidden" }
+                ]
+            },
+            "accessibility": {
+                "id": "accessibility",
+                "title": "Accessibility",
+                "description": "These checks highlight opportunities to [improve the accessibility of your web app](https://developer.chrome.com/docs/lighthouse/accessibility/).",
+                "manualDescription": "These items address areas which an automated testing tool cannot cover.",
+                "score": 0.88,
+                "auditRefs": [
+                    { "id": "color-contrast", "weight": 7, "group": "a11y-color-contrast" },
+                    { "id": "image-alt", "weight": 10, "group": "a11y-names-labels" },
+                    { "id": "html-has-lang", "weight": 7, "group": "a11y-language" }
+                ]
+            },
+            "best-practices": {
+                "id": "best-practices",
+                "title": "Best Practices",
+                "score": 0.96,
+                "auditRefs": [
+                    { "id": "errors-in-console", "weight": 1, "group": "best-practices-general" },
+                    { "id": "is-on-https", "weight": 5, "group": "best-practices-trust-safety" }
+                ]
+            },
+            "seo": {
+                "id": "seo",
+                "title": "SEO",
+                "description": "These checks ensure that your page is following basic search engine optimization advice.",
+                "manualDescription": "Run these additional validators on your site to check additional SEO best practices.",
+                "score": 1,
+                "auditRefs": [
+                    { "id": "meta-description", "weight": 1, "group": "seo-content" },
+                    { "id": "document-title", "weight": 1, "group": "seo-content" },
+                    { "id": "robots-txt", "weight": 1, "group": "seo-crawl" },
+                    { "id": "structured-data", "weight": 0, "group": "seo-crawl" }
+                ]
+            }
+        },
+        "categoryGroups": {
+            "metrics": { "title": "Metrics" },
+            "diagnostics": {
+                "title": "Diagnostics",
+                "description": "More information about the performance of your application."
+            },
+            "hidden": { "title": "" },
+            "a11y-color-contrast": { "title": "Contrast" },
+            "a11y-names-labels": { "title": "Names and labels" },
+            "a11y-language": { "title": "Internationalization and localization" },
+            "best-practices-general": { "title": "General" },
+            "best-practices-trust-safety": { "title": "Trust and Safety" },
+            "seo-content": { "title": "Content Best Practices" },
+            "seo-crawl": { "title": "Crawling and Indexing" }
+        },
+        "timing": { "total": 13894.21 },
+        "i18n": {
+            "rendererFormattedStrings": {
+                "varianceDisclaimer": "Values are estimated and may vary. The [performance score is calculated](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring/) directly from these metrics.",
+                "calculatorLink": "See calculator."
+            }
+        },
+        "entities": [],
+        "fullPageScreenshot": null
+    },
+    "analysisUTCTimestamp": "2026-09-18T20:41:07.512Z",
+    "version": { "major": 5, "minor": 0 }
+}

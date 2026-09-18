@@ -1,0 +1,18 @@
+{
+    "seoTitle": "PageSpeed Insights Bulk Audit API: Core Web Vitals Scores",
+    "seoDescription": "Bulk-audit URLs with Google's official PageSpeed Insights API: Lighthouse scores, LCP, CLS, INP and field data for mobile and desktop. Pay per audited page.",
+    "categories": ["SEO_TOOLS", "DEVELOPER_TOOLS"],
+    "isPublic": true,
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "defaultRunOptions": { "build": "latest", "memoryMbytes": 512, "timeoutSecs": 3600 },
+    "pricing": {
+        "events": {
+            "audit": {
+                "eventTitle": "Page audited",
+                "eventDescription": "One URL audited on one device strategy (mobile or desktop) through Google's official PageSpeed Insights API, with Lighthouse scores, lab metrics and Core Web Vitals field data. Pages Google cannot audit are not charged.",
+                "eventPriceUsd": 0.004,
+                "isPrimaryEvent": true
+            }
+        }
+    }
+}

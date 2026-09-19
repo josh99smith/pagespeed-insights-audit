@@ -168,9 +168,9 @@ if (!apiKey && !mock) {
                 return;
             }
 
-            const { eventChargeLimitReached, chargedCount } = await Actor.pushData(item, CHARGE_EVENT);
+            const { eventChargeLimitReached } = await Actor.pushData(item, CHARGE_EVENT);
             audited += 1;
-            charged += chargedCount ?? 0;
+            charged += 1;
             const s = item.scores;
             log.info(
                 `${item.finalUrl} [${task.strategy}]: perf ${s.performance ?? '-'} / a11y ${s.accessibility ?? '-'} / bp ${s.bestPractices ?? '-'} / seo ${s.seo ?? '-'}, ` +

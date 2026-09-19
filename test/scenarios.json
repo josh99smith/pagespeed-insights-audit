@@ -1,0 +1,42 @@
+{
+    "no-key-friendly": {
+        "input": {
+            "urls": [
+                "https://example.com"
+            ]
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "maxOk": 0,
+            "errorTypes": [
+                "missing-api-key"
+            ]
+        }
+    },
+    "bad-key": {
+        "input": {
+            "urls": [
+                "https://example.com"
+            ],
+            "apiKey": "invalid-key-for-testing"
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "maxOk": 0,
+            "errorTypes": [
+                "other",
+                "http-error",
+                "rate-limited"
+            ]
+        }
+    },
+    "empty-input": {
+        "input": {
+            "urls": []
+        },
+        "expect": {
+            "status": "FAILED",
+            "maxItems": 0
+        }
+    }
+}

@@ -169,6 +169,8 @@ Pages that could not be audited are still recorded, so nothing silently disappea
 
 You pay a **flat price per successfully audited URL and strategy** (see the price next to the Start button). Auditing 100 URLs on mobile is 100 events; on both mobile and desktop it is 200. Invalid URLs, pages Google cannot load and quota errors cost nothing. There is no charge for Actor start-up, and the Actor stops automatically when it reaches the maximum cost you set for a run, so a large list never produces a surprise bill.
 
+**How it compares (September 2026).** Actors that run their own headless Lighthouse charge $0.04 to $0.10 per page and, per Apify's public stats, fail on a quarter of runs; the cheapest alternative relies on an undocumented Google endpoint. This Actor calls the official PageSpeed Insights API at $0.004 per audit, handles many URLs per run on mobile and desktop, and never bills quota errors or pages Google could not load.
+
 ## API key and quota
 
 By default the Actor uses a built-in Google API key shared by all its users. The PageSpeed Insights API is free but rate limited (25,000 requests per day and a few hundred per minute per key). For large or scheduled workloads, create your own free key in the [Google Cloud Console](https://developers.google.com/speed/docs/insights/v5/get-started) (enable the "PageSpeed Insights API", then create an API key) and paste it into the **Google API key** field. The key is stored encrypted and never written to the log or dataset. When a quota is exhausted you get free `rate-limited` failure records; retry later or use your own key.
@@ -202,6 +204,10 @@ No scraping is involved. The Actor uses Google's official, documented PageSpeed 
 ### How many URLs can I audit, and what happens when the quota is exhausted?
 
 There is no hard limit on list size; the shared key allows a few hundred audits per minute and 25,000 per day across all users, and your own key gives you that quota to yourself. When a quota is exhausted, affected URLs are reported as free `rate-limited` failures and the run finishes normally.
+
+### Will the output fields change between runs?
+
+No. Output fields are stable: existing fields are never renamed or removed without a major version bump announced in the changelog, and new fields are only ever added. You can build integrations on the schema without checking it after every run.
 
 ## Related Actors by the same developer
 

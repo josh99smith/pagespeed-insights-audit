@@ -1,3 +1,5 @@
+![pagespeed-insights-audit banner](https://raw.githubusercontent.com/josh99smith/apify-actor-assets/main/banners/pagespeed-insights-audit.png)
+
 Audit any list of pages with the official **PageSpeed Insights API** and get back Core Web Vitals plus the **Lighthouse performance, accessibility, best-practices and SEO scores**, the lab metrics behind them (LCP, CLS, TBT, FCP, Speed Index, TTI) and real-user field data, for mobile and desktop, in one downloadable dataset.
 
 Built for **SEO agencies, web developers and site owners** who need the same numbers as pagespeed.web.dev for dozens or thousands of URLs at once. You pay a flat price per audited page; pages Google cannot audit are reported free of charge.

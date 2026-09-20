@@ -1,0 +1,51 @@
+[
+    {
+        "name": "bulk-core-web-vitals-check",
+        "title": "Bulk Core Web Vitals check for a list of URLs",
+        "seoTitle": "Bulk Core Web Vitals check for many URLs",
+        "seoDescription": "Audit LCP, INP and CLS plus performance, SEO and accessibility scores for a list of pages on mobile using Google's official PageSpeed Insights API.",
+        "description": "Audit a list of pages for Core Web Vitals (LCP, INP, CLS) and Lighthouse performance, accessibility, best-practice and SEO scores on mobile, through Google's official PageSpeed Insights API. Bring your own free API key for higher quota.",
+        "input": {
+            "urls": [
+                "https://example.com",
+                "https://www.wikipedia.org",
+                "https://developer.mozilla.org"
+            ],
+            "strategy": "mobile"
+        }
+    },
+    {
+        "name": "mobile-vs-desktop-page-speed-comparison",
+        "title": "Mobile vs desktop page speed comparison",
+        "seoTitle": "Compare mobile and desktop PageSpeed scores per URL",
+        "seoDescription": "Run both mobile and desktop strategies for each URL and get two rows per page with scores, lab metrics and field data for side-by-side comparison.",
+        "description": "Audit each URL on both mobile and desktop and get two rows per page with scores, lab metrics and Chrome UX Report field data, ready for a side-by-side comparison in a spreadsheet.",
+        "input": {
+            "urls": [
+                "https://www.wikipedia.org",
+                "https://github.com"
+            ],
+            "strategy": "both"
+        }
+    },
+    {
+        "name": "seo-and-accessibility-audit-with-failing-audits",
+        "title": "SEO and accessibility audit with failing checks listed",
+        "seoTitle": "SEO and accessibility audit for a list of pages",
+        "seoDescription": "Score pages for SEO, accessibility and best practices and list the specific failing audits and optimisation opportunities per page.",
+        "description": "Score pages for SEO, accessibility and best practices and list the specific failing audits and the biggest optimisation opportunities with estimated savings, so fixes can be prioritised per page.",
+        "input": {
+            "urls": [
+                "https://example.com",
+                "https://www.wikipedia.org"
+            ],
+            "categories": [
+                "seo",
+                "accessibility",
+                "best-practices",
+                "performance"
+            ],
+            "includeAuditDetails": true
+        }
+    }
+]

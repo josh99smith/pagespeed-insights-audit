@@ -10,8 +10,7 @@
             "type": "array",
             "description": "One page per line (or a JSON array of URLs). The scheme is optional: `example.com` and `https://example.com` both work. Duplicates are removed automatically. Each audit takes Google roughly 10 to 30 seconds.",
             "editor": "stringList",
-            "prefill": ["https://example.com", "https://www.wikipedia.org"],
-            "uniqueItems": true
+            "prefill": ["https://example.com", "https://www.wikipedia.org"]
         },
         "strategy": {
             "title": "Device strategy",

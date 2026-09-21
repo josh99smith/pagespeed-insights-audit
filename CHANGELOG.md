@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 (2026-09-20)
+
+- Duplicate input URLs are now deduplicated by the Actor instead of being rejected by input validation, as the field description already promised.
+
 ## 0.1.0 (2026-09-18)
 
 - Initial release: bulk audits through the official PageSpeed Insights API v5 (mobile, desktop or both).

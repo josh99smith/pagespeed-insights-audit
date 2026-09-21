@@ -84,7 +84,24 @@ const { items } = await client.dataset(run.defaultDatasetId).listItems();
 console.log(items);
 ```
 
-The Actor is also available as a tool through the Apify MCP server for AI agents, and it can be scheduled or connected to Zapier, Make, n8n and Google Sheets in the **Integrations** tab.
+### Use it from Claude, Cursor, ChatGPT or any MCP client
+
+The Actor is exposed as a tool by the [Apify MCP server](https://mcp.apify.com), so an AI agent can call it by name. Add this to your MCP client configuration (Claude Desktop, Claude Code, Cursor, VS Code, Windsurf and others):
+
+```json
+{
+    "mcpServers": {
+        "apify": {
+            "url": "https://mcp.apify.com?tools=josh99smith/pagespeed-insights-audit",
+            "headers": { "Authorization": "Bearer <YOUR_API_TOKEN>" }
+        }
+    }
+}
+```
+
+Then ask, for example: *"Audit https://example.com on mobile with josh99smith/pagespeed-insights-audit and list the top opportunities."* The agent fills in the input, runs the Actor and reads the dataset back; you pay the same per-result price as in the Console.
+
+The Actor can also be scheduled, or connected to Zapier, Make, n8n and Google Sheets in the **Integrations** tab.
 
 ## Output
 
@@ -227,3 +244,5 @@ No. Output fields are stable: existing fields are never renamed or removed witho
 Found a page that fails unexpectedly, or a field you are missing? Open a ticket in the **Issues** tab of this Actor.
 
 This Actor is open source under the MIT licence. PageSpeed Insights and Lighthouse are trademarks of Google LLC; this Actor is not affiliated with Google.
+
+The full source code is on GitHub: [josh99smith/pagespeed-insights-audit](https://github.com/josh99smith/pagespeed-insights-audit). Stars and pull requests are welcome.

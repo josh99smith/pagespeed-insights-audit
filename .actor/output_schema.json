@@ -1,6 +1,6 @@
 {
     "actorOutputSchemaVersion": 1,
-    "title": "PageSpeed Insights Core Web Vitals Audit output",
+    "title": "Best Damn PageSpeed Insights Audit output",
     "properties": {
         "results": {
             "type": "string",

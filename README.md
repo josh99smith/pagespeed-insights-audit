@@ -1,4 +1,4 @@
-![pagespeed-insights-audit banner](https://raw.githubusercontent.com/josh99smith/apify-actor-assets/main/banners/pagespeed-insights-audit.png)
+![pagespeed-insights-audit banner](https://raw.githubusercontent.com/josh99smith/apify-actor-assets/main/banners/pagespeed-insights-audit.png?v=bd1)
 
 Audit any list of pages with the official **PageSpeed Insights API** and get back Core Web Vitals plus the **Lighthouse performance, accessibility, best-practices and SEO scores**, the lab metrics behind them (LCP, CLS, TBT, FCP, Speed Index, TTI) and real-user field data, for mobile and desktop, in one downloadable dataset.
 
@@ -253,6 +253,7 @@ You can also attach [webhooks](https://docs.apify.com/platform/integrations/webh
 - [Best Damn PDF Text Extractor](https://apify.com/josh99smith/pdf-text-extractor): text and metadata from PDF files.
 - [Best Damn Sitemap URL Extractor](https://apify.com/josh99smith/sitemap-url-extractor): all URLs from XML sitemaps.
 - [Best Damn RSS to JSON Converter](https://apify.com/josh99smith/rss-feed-to-json): RSS and Atom feeds as JSON.
+- [Best Damn YouTube Comments Scraper](https://apify.com/josh99smith/youtube-comments-scraper): comments and replies from YouTube videos and channels.
 
 ## Support and feedback
 

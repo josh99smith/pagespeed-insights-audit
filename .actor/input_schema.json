@@ -1,6 +1,6 @@
 {
     "$schema": "https://apify.com/schemas/v1/input.ide.json",
-    "title": "PageSpeed Insights Core Web Vitals Audit input",
+    "title": "Best Damn PageSpeed Insights Audit input",
     "description": "Paste the page URLs to audit. Each successfully audited URL x strategy is one billable result; URLs that cannot be audited are reported for free.",
     "type": "object",
     "schemaVersion": 1,

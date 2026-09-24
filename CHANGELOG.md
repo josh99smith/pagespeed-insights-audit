@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 (2026-09-24)
+
+- Short run timeouts: the Actor now watches the run's timeout, caps each audit so it cannot outlive the run, and stops starting new audits when time runs out. The remaining URLs are listed as free `timeout` records and the run finishes as SUCCEEDED, instead of the platform killing it. SUMMARY gains `stoppedEarlyDueToRunTimeout` and `notStartedDueToRunTimeout`.
+
 ## 0.1.2 (2026-09-23)
 
 - Listing: joined the Best Damn series. New title "Best Damn PageSpeed Insights Audit", new description, icon and README banner. No change to inputs, output or pricing.

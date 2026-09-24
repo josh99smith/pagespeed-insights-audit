@@ -201,6 +201,7 @@ By default the Actor uses a built-in Google API key shared by all its users. The
 - **Variance**: for trend reports, audit on a schedule and look at the moving average rather than single runs.
 - **Speed**: raise **Max concurrency** to 6 to 8 for large lists with your own API key. Higher values mostly produce per-minute quota errors.
 - **Only what you need**: dropping unused categories makes each audit a little faster.
+- **Short run timeouts**: each audit takes 10 to 30 seconds. If the run timeout is about to expire (common when an AI agent or scheduler starts runs with a short timeout), the Actor stops starting new audits, lists the rest as free `timeout` records and finishes normally, so you keep everything already audited.
 
 ## FAQ
 

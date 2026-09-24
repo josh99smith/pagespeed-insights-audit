@@ -3,6 +3,7 @@ import { setTimeout as sleep } from 'node:timers/promises';
 import { Actor, log } from 'apify';
 
 import { fetchPsi } from './client.js';
+import { auditBudget } from './deadline.js';
 import { runPool } from './pool.js';
 import {
     type Category,
@@ -91,6 +92,20 @@ let audited = 0;
 let charged = 0;
 let failed = earlyFailures.length;
 let stopBecauseOfBudget = false;
+let stopBecauseOfRunTimeout = false;
+let notStartedDueToRunTimeout = 0;
+const { timeoutAt } = Actor.getEnv();
+
+/** True when the run's hard timeout is too close to start another audit (checked before each task). */
+function outOfRunTime(): boolean {
+    if (stopBecauseOfRunTimeout) return true;
+    if (auditBudget(timeoutAt, timeoutSecs * 1000)) return false;
+    stopBecauseOfRunTimeout = true;
+    log.warning(
+        'The run timeout is about to expire; not starting more audits. Raise the run timeout or split the URL list to audit the rest.',
+    );
+    return true;
+}
 
 if (!apiKey && !mock) {
     // Friendly, free failure records instead of a crash: the run finishes and the user sees exactly what to do.
@@ -116,15 +131,17 @@ if (!apiKey && !mock) {
             `key from ${keySource}.`,
     );
 
-    await runPool(
+    const pool = await runPool(
         tasks,
         maxConcurrency,
         async (task) => {
             const started = Date.now();
+            // outOfRunTime() was checked just before this task was handed out, so a budget exists; the fallback is defensive.
+            const budget = auditBudget(timeoutAt, timeoutSecs * 1000) ?? { timeoutMs: 20_000, maxRetries: 0 };
             const result = await fetchPsi(task.url, task.strategy, categories, {
                 apiKey,
                 mock,
-                timeoutMs: timeoutSecs * 1000,
+                ...budget,
             });
             const seconds = ((Date.now() - started) / 1000).toFixed(1);
 
@@ -183,8 +200,22 @@ if (!apiKey && !mock) {
                 );
             }
         },
-        () => stopBecauseOfBudget || aborting,
+        () => stopBecauseOfBudget || aborting || outOfRunTime(),
     );
+
+    if (stopBecauseOfRunTimeout && !stopBecauseOfBudget && !aborting) {
+        // Tell the user exactly which audits were not attempted instead of letting the platform kill the run.
+        const items: FailureItem[] = tasks.slice(pool.started).map((t) => ({
+            url: t.originalUrl,
+            strategy: t.strategy,
+            success: false,
+            errorType: 'timeout',
+            error: 'Not audited: the run timeout was about to expire. Raise the run timeout or split the URL list.',
+            fetchedAt: new Date().toISOString(),
+        }));
+        notStartedDueToRunTimeout = items.length;
+        if (items.length) await Actor.pushData(items); // free of charge
+    }
 }
 
 const summary = {
@@ -197,6 +228,8 @@ const summary = {
     skipped: Math.max(tasks.length - audited - (failed - earlyFailures.length), 0),
     chargedEvents: isPayPerEvent ? charged : undefined,
     stoppedEarlyDueToBudget: stopBecauseOfBudget,
+    stoppedEarlyDueToRunTimeout: stopBecauseOfRunTimeout,
+    notStartedDueToRunTimeout,
 };
 await Actor.setValue('SUMMARY', summary);
 log.info(`Done. ${JSON.stringify(summary)}`);

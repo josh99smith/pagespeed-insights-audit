@@ -259,7 +259,7 @@ You can also attach [webhooks](https://docs.apify.com/platform/integrations/webh
 
 ## Support and feedback
 
-Found a page that fails unexpectedly, or a field you are missing? Open a ticket in the **Issues** tab of this Actor.
+Found a page that fails unexpectedly, or a field you are missing? Open a ticket in the **Issues** tab of this Actor. If this Actor saved you time, a review on its Store page helps other people find it.
 
 This Actor is open source under the MIT licence. PageSpeed Insights and Lighthouse are trademarks of Google LLC; this Actor is not affiliated with Google.
 
